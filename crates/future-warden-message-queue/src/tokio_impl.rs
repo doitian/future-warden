@@ -6,9 +6,8 @@ impl<T> crate::Sender<T> for Sender<T>
 where
     T: Send,
 {
-    fn send(&self, message: T) -> impl Future<Output = Result<(), SendError>> + Send {
-        let fut = self.send(message);
-        async { fut.await.map_err(|_| SendError) }
+    async fn send(&self, message: T) -> Result<(), SendError> {
+        self.send(message).await.map_err(|_| SendError)
     }
 }
 
@@ -16,9 +15,8 @@ impl<T> crate::Receiver<T> for Receiver<T>
 where
     T: Send,
 {
-    fn recv(&mut self) -> impl Future<Output = Result<T, RecvError>> + Send {
-        let fut = self.recv();
-        async { fut.await.ok_or(RecvError) }
+    async fn recv(&mut self) -> Result<T, RecvError> {
+        self.recv().await.ok_or(RecvError)
     }
 
     fn len(&self) -> usize {
