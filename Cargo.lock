@@ -3,7 +3,7 @@
 version = 4
 
 [[package]]
-name = "future-warden-message-queue"
+name = "future-warden-mailbox"
 version = "0.1.0"
 dependencies = [
  "tokio",

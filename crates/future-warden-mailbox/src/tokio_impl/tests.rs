@@ -3,8 +3,8 @@ use super::*;
 use crate::{Receiver, Sender};
 
 #[tokio::test]
-async fn test_message_queue() {
-    let (tx, mut rx) = message_queue(50);
+async fn test_mailbox() {
+    let (tx, mut rx) = mailbox(50);
     assert_eq!(Receiver::len(&rx), 0);
     assert_eq!(Receiver::max_capacity(&rx), 50);
 

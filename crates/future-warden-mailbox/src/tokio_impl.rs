@@ -1,4 +1,4 @@
-pub use tokio::sync::mpsc::{Receiver, Sender, channel as message_queue};
+pub use tokio::sync::mpsc::{Receiver, Sender, channel as mailbox};
 
 use crate::{RecvError, SendError};
 
